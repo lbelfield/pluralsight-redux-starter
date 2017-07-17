@@ -8,15 +8,15 @@ export default {
   entry: [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
-    path.resolve(__dirname, 'src/index')
+    path.resolve(__dirname, 'src/index') // src/index.js is our main entry point
   ],
   target: 'web',
-  output: {
+  output: { // where it should create our web pack bundle. In this case, dist/bundle.js
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
     filename: 'bundle.js'
   },
-  devServer: {
+  devServer: { // where the code is - in ./src
     contentBase: path.resolve(__dirname, 'src')
   },
   plugins: [
@@ -24,7 +24,7 @@ export default {
     new webpack.NoErrorsPlugin()
   ],
   module: {
-    loaders: [
+    loaders: [ // types of files we want it to handle. This includes js, css, font files and images
       {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
       {test: /(\.css)$/, loaders: ['style', 'css']},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
