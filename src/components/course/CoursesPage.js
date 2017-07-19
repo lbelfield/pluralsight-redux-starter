@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actionCreators/courseActions';
 
 class CoursesPage extends Component {
@@ -31,7 +32,7 @@ class CoursesPage extends Component {
 
     onClickSave() {
         // here we use the Connect Function's mapDispatchToProps and use the action createCourse()
-        this.props.createCourse(this.state.course);
+        this.props.actions.createCourse(this.state.course);
     }
 
     courseRow(course, index) {
@@ -54,7 +55,7 @@ class CoursesPage extends Component {
 // to get rid of linting errors, we use propTypes to define our two new additions to the props - 
 // ConnectFunction's mapStateToProps and mapDispatchToProps
 CoursesPage.propTypes = {
-    createCourse: PropTypes.func.isRequired,
+    actions: PropTypes.object.isRequired,
     courses: PropTypes.array.isRequired
 };
 
@@ -73,11 +74,9 @@ function mapStateToProps(state, ownProps) {
 // to determine what actions we want to expose to our CoursePage.js Component
 function mapDispatchToProps(dispatch) {
     return {
-        // this is our Option 2. 
-        // we manually wrap our Action Creator (actionCreators/courseActions.js's createCourse() ) in a Dispatch call
-        createCourse: (course) => {
-            dispatch(courseActions.createCourse(course));
-        }
+        // this is our Option 3. 
+        // use bindActionCreator method on 'redux' to wrap our Action Creator (actionCreators/courseActions.js's createCourse() ) in a Dispatch call
+        actions: bindActionCreators(courseActions, dispatch)
     };
 }
 
