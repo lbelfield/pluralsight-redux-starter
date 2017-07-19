@@ -15,12 +15,13 @@ class CoursesPage extends Component {
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
 
+        // initialize State!!!!
         this.state = {
             course: { title: "" }
         };
     }
 
-    // create two new functions to handle our jsx.
+    // create three new functions to handle our jsx, which are called by render()
 
     // our text box - when it changes, fire off this function.
     // this sets the value passed in (value=this.state.course.title) and uses setState to change the state.course
@@ -52,6 +53,7 @@ class CoursesPage extends Component {
     }
 }
 
+// propTypes for props Validation
 // to get rid of linting errors, we use propTypes to define our two new additions to the props - 
 // ConnectFunction's mapStateToProps and mapDispatchToProps
 CoursesPage.propTypes = {

@@ -1,5 +1,6 @@
-// this is our reducer that takes in an (empty) state and an action
+import * as types from '../actionCreators/actionTypes';
 
+// this is our reducer that takes in an (empty) state and an action
 export default function courseReducer(state = [], action) {
 
     // switch statement to check which action we want. 
@@ -7,7 +8,7 @@ export default function courseReducer(state = [], action) {
     switch(action.type) {
 
         // we want to filter only our CREATE_COURSE' action
-        case 'CREATE_COURSE':
+        case types.CREATE_COURSE:
             // the below two lines feel right, but remember, we need to keep this IMMUTABLE!! So use Object.assign and Spread Operator
             // state.push(action.course);
             // return state;
