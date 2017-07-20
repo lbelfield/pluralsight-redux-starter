@@ -11,6 +11,10 @@ class CoursesPage extends Component {
 
     render() {
         debugger;
+        // note propTypes explicitly defines courses, which is an array.
+        // this is set on load by mapStateToProps, which passes an array of courses (got from CourseReducer and CourseActions)
+        // As this is a Container Component, we need to eliminate any Presentational code, so we create CourseList.
+        // CourseList needs access to this course array, so we pass it down to it's props.
         return (
             <div>
                 <h1>Courses</h1>
