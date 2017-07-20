@@ -4,6 +4,7 @@ import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage';
+import ManageCoursePage from './components/course/ManageCoursePage';
 
 export default (
     // by placing app at the top, we are saying always load the app component 
@@ -11,7 +12,9 @@ export default (
     // eg if a /about URL comes in, then AboutPage will be passed as a child to our App component 
     <Route path="/" component={App}>
         <IndexRoute component={HomePage} />
-        <Route path="about" component={AboutPage} />
         <Route path="courses" component={CoursesPage} />
+        <Route path="course" component={ManageCoursePage} />
+        <Route path="course/:id" component={ManageCoursePage} />
+        <Route path="about" component={AboutPage} />        
     </Route>
 );

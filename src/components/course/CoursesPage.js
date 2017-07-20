@@ -3,10 +3,22 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actionCreators/courseActions';
 import CourseList from './CourseList';
+import {browserHistory} from 'react-router';
 
 class CoursesPage extends Component {
     constructor(props, context) {
         super(props, context);
+        
+        // because ES6, we need to handle 'this' keyword in JS.
+        // remember, call() and apply() allow us to set the 'this' keyword.
+        // bind() does exactly the same, but allows us to invoke it later. 
+        // So using bind() in the ctor makes sense, as we dont want to call this now 
+        // So we just set this to the instance of the class, rather than the render()'s this which is what invokes it
+        this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    }
+
+    redirectToAddCoursePage() {
+        browserHistory.push('/course');
     }
 
     render() {
@@ -14,11 +26,19 @@ class CoursesPage extends Component {
         // this is set on load by mapStateToProps, which passes an array of courses (got from CourseReducer and CourseActions)
         // As this is a Container Component, we need to eliminate any Presentational code, so we create CourseList.
         // CourseList needs access to this course array, so we pass it down to it's props.
+
+        // also added a button to redirect to the Add courses page using our react-router
         return (
             <div>
                 <h1>Courses</h1>
+
+                <input 
+                    type="submit"
+                    value="Add Course"
+                    className="btn btn-primary"
+                    onClick={this.redirectToAddCoursePage} />
+
                 <CourseList courses={this.props.courses} />
-                <h2>Luke's kick ass app</h2>
             </div>
         );
     }

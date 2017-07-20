@@ -12,13 +12,15 @@ import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 
 import {loadCourses} from './actionCreators/courseActions';
+import {loadAuthors} from './actionCreators/authorActions';
 
 
 // using Redux, we create our store.
 const store = configureStore();
 // once the store is configured, we can dispatch actions against the store
-// note this should be done for async calls (using thunk)
+// note this should ONLY be done for data that you need on load and not for every Action Creator
 store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
 
 render(
     // react-redux Provider Component at the application root.

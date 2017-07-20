@@ -21,3 +21,25 @@ export function loadCourses() {
         });
     };
 }
+
+
+// saveCourse is identical to above, with one exception...
+// if the id is new, we want to create a new course, using createCourseSuccess
+// if the id already exists, we want to update the course, using updateCourseSuccess
+export function updateCourseSuccess(course) {
+    return { type: types.UPDATE_COURSE_SUCCESS, course: course };
+}
+
+export function createCourseSuccess(course) {
+    return { type: types.CREATE_COURSE_SUCCESS, course: course };
+}
+
+export function saveCourse(course) {
+    return function(dispatch, getState) {
+        return courseApi.saveCourse(course).then(savedCourse => {
+            course.id ? dispatch(updateCourseSuccess(savedCourse)) : dispatch(createCourseSuccess(savedCourse));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
