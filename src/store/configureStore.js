@@ -4,6 +4,7 @@ import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 
 export default function configureStore(initialState) {
+    debugger;
     // createStore takes in three parameters
         // 1 is our rootReducer (reducers/index.js) that combines all of our reducers
         // 2 is the initial state, which was passed in

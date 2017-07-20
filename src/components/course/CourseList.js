@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import CourseListRow from './CourseListRow';
 
 const CourseList = ({courses}) => {
+    debugger;
     return(
         <table className="table">
             <thead>

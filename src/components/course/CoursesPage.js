@@ -10,6 +10,7 @@ class CoursesPage extends Component {
     }
 
     render() {
+        debugger;
         return (
             <div>
                 <h1>Courses</h1>
@@ -31,6 +32,7 @@ CoursesPage.propTypes = {
 // this is our Function used in our react-redux's Connect Function
 // to determine what state we want to expose to our CoursePage.js Component
 function mapStateToProps(state, ownProps) {
+    debugger;
     return {
         // in reducers/index.js, we combined all of our reducers into the rootReducer
         // here, courses represents the CourseReducer set in the rootReducer
@@ -42,6 +44,7 @@ function mapStateToProps(state, ownProps) {
 // this is our Function used in our react-redux's Connect Function
 // to determine what actions we want to expose to our CoursePage.js Component
 function mapDispatchToProps(dispatch) {
+    debugger;
     return {
         // this is our Option 3. 
         // use bindActionCreator method on 'redux' to wrap our Action Creator (actionCreators/courseActions.js's createCourse() ) in a Dispatch call
