@@ -27,6 +27,19 @@ class ManageCoursePage extends Component {
         this.saveCourse = this.saveCourse.bind(this);
     }
 
+    // THIS IS A LIFECYCLE HOOK!!!!!!!!!!!!!!!!!!!!
+    // this runs when the component is receiving new properties, 
+    // ie when the properties have changed AND when React thinks that props MIGHT have changed.
+    // The latter because React isn't sure if props changed, so it runs it for safety.
+    componentWillReceiveProps(nextProps) {
+        // note we must double check the course.id has changed, because if run when it might have changed when it hasn't (ie latter)
+        // then it will override the state, which is bad 
+        if(this.props.course.id != nextProps.course.id) {
+            // Necessary to populate form when existing course is loaded directly.
+            this.setState({course: Object.assign({}, nextProps.course)});
+        }
+    }
+
     // in our Presentational Component - TextInput.js (an input box) we bind the props' onChange() to updateCourseState()
     // this is so we can keep the state at the top level and can use it whenever needed.
     // Each time this gets called, we delete the current state and create a new one via Object.assign()
@@ -86,8 +99,22 @@ ManageCoursePage.contextTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-    // pass an empty course to CourseForm.js to display a blank course so the user can add a new one
-    let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+    // ownProps is a reference to our component's props.
+    // this means we can access routing, (check routes.js) and as: 
+        // AddCourse button routes to /course (check CoursesPage.js)
+        // while updating a course routes to /course/:id (check CourseListRow.js - <Link to={'/course/' + course.id}>)
+    // we can get the course's id from the url using the the routeParams on the props
+    // checkout the object here - console.log(ownProps) 
+    let courseId = ownProps.routeParams.id;
+
+    let course = {};
+
+    if(courseId && state.courses.length > 0) {
+        course = state.courses.filter(c => c.id == courseId)[0];
+    }
+    else if(!courseId) {
+        course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+    }
 
     // api gives us unformatted data, so we make it useful by adding a mapping function here.
     // this will be the list used for our dropdown, hence an array of authors 
