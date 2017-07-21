@@ -47,6 +47,9 @@ class ManageCoursePage extends Component {
     saveCourse() {
         event.preventDefault();
         this.props.actions.saveCourse(this.state.course);
+
+        // this uses the contextTypes's router to redirect our url to the courses page after we save
+        this.context.router.push('/courses');
     }
 
     // pass props down to Presentational Component
@@ -69,6 +72,17 @@ ManageCoursePage.propTypes = {
     course: React.PropTypes.object.isRequired,
     authors: React.PropTypes.array.isRequired,
     actions: React.PropTypes.object.isRequired
+};
+
+// contextTypes is a static property, so must be defined below our class in a static call.
+// We want router to be one of the contextTypes, which makes React Router's context available to us throughout this component via this.context.router. 
+// Context, is a global variable that library authors use but that we as library consumers should avoid. 
+// Yes, global state is generally evil, but context is used by both React Router and Redux in some places to provide easy access to the data 
+// that we need without having to write boilerplate plumbing code. 
+// And that's exactly what we're avoiding here. 
+// Since we have access to the router's context, we use it in our save function.
+ManageCoursePage.contextTypes = {
+    router: React.PropTypes.object
 };
 
 function mapStateToProps(state, ownProps) {
