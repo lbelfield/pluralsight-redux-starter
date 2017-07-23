@@ -41,6 +41,8 @@ export function createCourseSuccess(course) {
     return { type: types.CREATE_COURSE_SUCCESS, course: course };
 }
 
+
+// this is a thunk!
 export function saveCourse(course) {
 
     return function(dispatch, getState) {
