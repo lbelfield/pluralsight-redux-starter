@@ -16,11 +16,11 @@ export default function ajaxStatusReducer(state = initialState.ajaxCallsInProgre
 
     // checks when the ajax call has begun 
     if(action.type == types.BEGIN_AJAX_CALL) {
-        // add 1 to the initialState's ajaxCallsInProgress, which is set to 0 initially
+        // +1 to the initialState's ajaxCallsInProgress, which counts how many ajax calls are currently being dealt with
         return state + 1;
     }
-    // checks when the ajax call has ended using a function at top of file
-    else if (actionTypeEndsInSuccess(action.type)) {
+    // checks when the ajax call has ended using a function at top of file or if error
+    else if (action.type == types.AJAX_CALL_ERROR || actionTypeEndsInSuccess(action.type)) {
         return state -1;
     }
 

@@ -71,9 +71,15 @@ class ManageCoursePage extends Component {
         this.props.actions.saveCourse(this.state.course)
             .then(() => {
                 this.redirectToCoursesPage();
+                toastr.success('Course saved');
+            })
+            .catch(error => {
+                toastr.error(error);
+            })
+            .then(() => {
+                // .then() acts as a finally
                 // as finished, set the saving in our local state to false, so we can get the button enabled 
                 this.setState({saving: false});
-                toastr.success('Course saved');
             });
     }
 
