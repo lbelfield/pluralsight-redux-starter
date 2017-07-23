@@ -15,7 +15,8 @@ class ManageCoursePage extends Component {
         // this is useful when we use our updateCourseState() as course will need to change when a user types
         this.state = {
             course: Object.assign({}, this.props.course),
-            errors: {}
+            errors: {},
+            saving: false
         };
 
         // because ES6, we need to handle 'this' keyword in JS.
@@ -53,14 +54,28 @@ class ManageCoursePage extends Component {
     }
 
     // Note: saveCourse() binds to CourseForm.js button's onSave() = onClick() 
-    // in courseAction.js, we have saveCourse, which will use the api to either update or create a course
+    // in courseAction.js, we have saveCourse(), which will use the api to either update or create a course
     // we have all the actions on our props already defined by our mapDispatchToProps() below
     // the api needs to take in a course. 
     // The course created by the user is already set by the updateCourseState() which is stored in this.state.course
     saveCourse() {
         event.preventDefault();
-        this.props.actions.saveCourse(this.state.course);
 
+        // set the saving in our local state to true, so we can get the button disabled 
+        this.setState({saving: true});
+
+        // saveCourse() is in our courseAction.js and is a Thunk, meaning it is promise based.
+        // We can therefore improve user experience by saying once saved, then redirect
+        // rather than the user seeing stale data in CoursePage.js.
+        this.props.actions.saveCourse(this.state.course)
+            .then(() => {
+                this.redirectToCoursesPage();
+                // as finished, set the saving in our local state to false, so we can get the button enabled 
+                this.setState({saving: false});
+            });
+    }
+
+    redirectToCoursesPage() {
         // this uses the contextTypes's router to redirect our url to the courses page after we save
         this.context.router.push('/courses');
     }
@@ -73,7 +88,8 @@ class ManageCoursePage extends Component {
                 allAuthors={this.props.authors}
                 onChange={this.updateCourseState}
                 onSave={this.saveCourse}
-                errors={this.state.errors} 
+                errors={this.state.errors}
+                saving={this.state.saving}
             />
         );
     }
