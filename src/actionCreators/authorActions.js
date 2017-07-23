@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import AuthorApi from '../api/mockAuthorApi';
+import {beginAjaxCall} from './ajaxStatusActions';
 
 // this is my Action Creator for loadAuthorsSuccess(), used in my thunk
 export function loadAuthorsSuccess(authors) {
@@ -13,11 +14,17 @@ export function loadAuthorsSuccess(authors) {
 // the asynchronous promise will be inside our thunk
 // remember, thunk always returns a function that accepts a dispatch
 export function loadAuthors() {
+
     return function(dispatch) {
+
+        // adding our beginAjax to our thunk, for loading
+        dispatch(beginAjaxCall());
+
         return AuthorApi.getAllAuthors().then(authors => {
             dispatch(loadAuthorsSuccess(authors));
         }).catch(error => {
             throw(error);
         });
+
     };
 }
