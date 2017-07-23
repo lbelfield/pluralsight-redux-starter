@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actionCreators/courseActions';
+import toastr from 'toastr';
 
 // Presentational Component
 import CourseForm from './CourseForm';
@@ -72,6 +73,7 @@ class ManageCoursePage extends Component {
                 this.redirectToCoursesPage();
                 // as finished, set the saving in our local state to false, so we can get the button enabled 
                 this.setState({saving: false});
+                toastr.success('Course saved');
             });
     }
 
