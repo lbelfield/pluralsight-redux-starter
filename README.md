@@ -152,6 +152,38 @@ then to switch back:
 
 ******************************************************************************************************************************
 
+******************************************************************************************************************************        
+## GIT ReduxThunkFourth BRANCH
+******************************************************************************************************************************
+
+Very little addition here.
+
+Redux Lifecycle - new Action created, called AJAX_CALL_ERROR. 
+                - added to existing Reducer to -1 from the AJAX in progress counter
+                - main => adding to existing loadCoursesSuccess Thunk - dispatch the new Action when the error is caught.
+                - built upon the promise in ManageCoursePage.js, catching the error and using a toastr 
+
+Enhancements:
+    1 Save button disabled when saving is in progress, via saveCourse() Action
+    2 toastr introduced when saving - nice visual feedback for user to know shit has been saved
+
+To get back to this, I have created a branch called ReduxThunkFourth (locally) and ReduxThunkFourth (remotely)
+
+This branch contains verbose comments.
+
+`git branch --all`
+`git checkout ReduxThunkFourth`
+
+Note, to push to this branch, do add and commit, then:
+`git push -u origin ReduxThunkFourth`
+
+then to switch back:
+
+`git branch --all`
+`git checkout master`
+
+******************************************************************************************************************************
+
 
 ******************************************************************************************************************************
 ## SET UP
