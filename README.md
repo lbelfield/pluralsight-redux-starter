@@ -184,6 +184,40 @@ then to switch back:
 
 ******************************************************************************************************************************
 
+******************************************************************************************************************************        
+## GIT TestsEnzymePresentational BRANCH
+******************************************************************************************************************************
+
+Testing Branch using:
+    1. Mocha - Testing Framework
+    2. Expect - Assertion Library (for asserts)
+    3. JSDOM - In-Memory Browser (so no need to open one)
+    4. Enzyme - Helper Library
+
+    Note: ReactTestUtils - Helper Library also, but only one test to show differences with Enzyme
+
+To test, run script:
+`npm run test`
+To run test in watch mode:
+`npm run test:watch`
+
+To get back to this, I have created a branch called TestsEnzymePresentational (locally) and TestsEnzymePresentational (remotely)
+
+This branch contains verbose comments.
+
+`git branch --all`
+`git checkout TestsEnzymePresentational`
+
+Note, to push to this branch, do add and commit, then:
+`git push -u origin TestsEnzymePresentational`
+
+then to switch back:
+
+`git branch --all`
+`git checkout master`
+
+******************************************************************************************************************************
+
 
 ******************************************************************************************************************************
 ## SET UP
