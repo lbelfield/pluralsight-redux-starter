@@ -7,7 +7,10 @@ import toastr from 'toastr';
 // Presentational Component
 import CourseForm from './CourseForm';
 
-class ManageCoursePage extends Component {
+// selectors for bespoke logic
+import {authorFormattedForDropDown} from '../../selectors/selectors';
+
+export class ManageCoursePage extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -54,13 +57,30 @@ class ManageCoursePage extends Component {
         return this.setState({course: course});
     }
 
+    courseFormIsValid() {
+        let formIsValid = true;
+        let errors = {};
+
+        if(this.state.course.title.length < 5) {
+            errors.title = 'Title must be at least 5 characters.';
+            formIsValid = false;
+        }
+
+        this.setState({errors: errors});
+        return formIsValid;
+    }
+
     // Note: saveCourse() binds to CourseForm.js button's onSave() = onClick() 
     // in courseAction.js, we have saveCourse(), which will use the api to either update or create a course
     // we have all the actions on our props already defined by our mapDispatchToProps() below
     // the api needs to take in a course. 
     // The course created by the user is already set by the updateCourseState() which is stored in this.state.course
-    saveCourse() {
+    saveCourse(event) {
         event.preventDefault();
+
+        if(!this.courseFormIsValid()) {
+            return;
+        }
 
         // set the saving in our local state to true, so we can get the button disabled 
         this.setState({saving: true});
@@ -140,19 +160,10 @@ function mapStateToProps(state, ownProps) {
         course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
     }
 
-    // api gives us unformatted data, so we make it useful by adding a mapping function here.
-    // this will be the list used for our dropdown, hence an array of authors 
-    const authorFormattedForDropDown = state.authors.map(author => {
-        return {
-            value: author.id,
-            text: author.firstName + ' ' + author.lastName
-        };
-    });
-
     //state to pass to PresentationalComponent
     return {
         course: course,
-        authors: authorFormattedForDropDown
+        authors: authorFormattedForDropDown(state.authors)
     };
 }
 

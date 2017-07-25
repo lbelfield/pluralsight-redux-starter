@@ -191,7 +191,7 @@ then to switch back:
 Testing Branch using:
     1. Mocha - Testing Framework
     2. Expect - Assertion Library (for asserts)
-    3. JSDOM - In-Memory Browser (so no need to open one)
+    3. JSDOM - Virtual In-Memory DOM (so no need to open a Browser just to get a DOM)
     4. Enzyme - Helper Library
 
     Note: ReactTestUtils - Helper Library also, but only one test to show differences with Enzyme
