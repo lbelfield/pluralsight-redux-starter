@@ -27,4 +27,9 @@ describe ('Manage Course Page', () => {
         //assert
         expect(wrapper.state().errors.title).toBe('Title must be at least 5 characters.');
     });
+
+    // todo should unit test:
+        // 1 updateCourseState()
+        // 2 redirectToCoursesPage()
+        // 3 Rest of mapStateToProps - note partially done in the selectors/selector.js
 });
