@@ -191,10 +191,13 @@ then to switch back:
 Testing Branch using:
     1. Mocha - Testing Framework
     2. Expect - Assertion Library (for asserts)
-    3. JSDOM - In-Memory Browser (so no need to open one)
+    3. JSDOM - Virtual In-Memory DOM (so no need to open a Browser just to get a DOM)
     4. Enzyme - Helper Library
 
     Note: ReactTestUtils - Helper Library also, but only one test to show differences with Enzyme
+
+These Test:
+    1. Presentational Components (simple) using shallow() for the Component only
 
 To test, run script:
 `npm run test`
@@ -218,6 +221,43 @@ then to switch back:
 
 ******************************************************************************************************************************
 
+******************************************************************************************************************************        
+## GIT TestsEnzymeContainer BRANCH
+******************************************************************************************************************************
+
+Testing Branch using:
+    1. Mocha - Testing Framework
+    2. Expect - Assertion Library (for asserts)
+    3. JSDOM - Virtual In-Memory DOM (so no need to open a Browser just to get a DOM)
+    4. Enzyme - Helper Library
+
+This tests:
+    1. Container Components using mount() for Component + Children, and simulate() for events
+    2. Reducers (simple)
+    3. Thunks (redux-mock-store and redux-thunk)
+    4. Store (these are more like Integration Tests) testing the Actions, Reducers and Store work together
+
+To test, run script:
+`npm run test`
+To run test in watch mode:
+`npm run test:watch`
+
+To get back to this, I have created a branch called TestsEnzymeContainer (locally) and TestsEnzymeContainer (remotely)
+
+This branch contains verbose comments.
+
+`git branch --all`
+`git checkout TestsEnzymeContainer`
+
+Note, to push to this branch, do add and commit, then:
+`git push -u origin TestsEnzymeContainer`
+
+then to switch back:
+
+`git branch --all`
+`git checkout master`
+
+******************************************************************************************************************************
 
 ******************************************************************************************************************************
 ## SET UP
