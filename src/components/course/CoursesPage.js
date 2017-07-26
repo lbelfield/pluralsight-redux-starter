@@ -5,7 +5,7 @@ import * as courseActions from '../../actionCreators/courseActions';
 import CourseList from './CourseList';
 import {browserHistory} from 'react-router';
 
-class CoursesPage extends Component {
+export class CoursesPage extends Component {
     constructor(props, context) {
         super(props, context);
         

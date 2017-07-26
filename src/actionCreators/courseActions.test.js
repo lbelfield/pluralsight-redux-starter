@@ -20,7 +20,7 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
         // Test data for Actions
         const actions = [
             { type: types.BEGIN_AJAX_CALL },
-            { type: types.UPDATE_COURSE_SUCCES },
+            { type: types.UPDATE_COURSE_SUCCESS },
             { type: types.CREATE_COURSE_SUCCESS },
             {
                 type: types.LOAD_COURSES_SUCCESS, 
@@ -60,7 +60,7 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
         // Test data for Actions
         const actions = [
             { type: types.BEGIN_AJAX_CALL },
-            { type: types.UPDATE_COURSE_SUCCES },
+            { type: types.UPDATE_COURSE_SUCCESS },
             { type: types.CREATE_COURSE_SUCCESS },
             { type: types.LOAD_COURSES_SUCCESS }
         ];
