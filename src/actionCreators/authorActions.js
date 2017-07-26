@@ -20,11 +20,12 @@ export function loadAuthors() {
         // adding our beginAjax to our thunk, for loading
         dispatch(beginAjaxCall());
 
-        return AuthorApi.getAllAuthors().then(authors => {
-            dispatch(loadAuthorsSuccess(authors));
-        }).catch(error => {
-            throw(error);
-        });
-
+        return AuthorApi.getAllAuthors()
+            .then(authors => {
+                dispatch(loadAuthorsSuccess(authors));
+            })
+            .catch(error => {
+                throw(error);
+            });
     };
 }
