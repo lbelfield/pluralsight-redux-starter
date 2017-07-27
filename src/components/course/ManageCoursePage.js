@@ -125,6 +125,7 @@ export class ManageCoursePage extends Component {
 
 // propTypes is a static property, so must be defined below our class in a static call.
 // explicit about our props
+// In a Container Component, ALL RETURNED PROPS IN mapStateToProps() AND mapDispatchToProps SHOULD BE DEFINED HERE  
 ManageCoursePage.propTypes = {
     course: React.PropTypes.object.isRequired,
     authors: React.PropTypes.array.isRequired,
@@ -142,6 +143,9 @@ ManageCoursePage.contextTypes = {
     router: React.PropTypes.object
 };
 
+// WHAT STATE SHOULD I EXPOSE AS PROPS???
+// this is our Function used in our react-redux's Connect Function
+// to determine what state we want to expose to our ManageCoursePage.js Component
 function mapStateToProps(state, ownProps) {
     // ownProps is a reference to our component's props.
     // this means we can access routing, (check routes.js) and as: 
@@ -167,6 +171,7 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
+// WHAT ACTIONS SHOULD I EXPOSE AS PROPS???
 // bindActionCreators handles three actions - loadAuthors, loadCourses, saveCourse
 function mapDispatchToProps(dispatch) {
     return {

@@ -4,7 +4,7 @@ import expect from 'expect';
 import * as authorActions from './authorActions';
 import * as types from './actionTypes';
 
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store'; // configure a mock store
 //import nock from 'nock'; // for mocking HTTP calls - not needed as using a mock api
 
@@ -41,6 +41,6 @@ describe('Author Actions - Thunks Only - Async Actions', () => {
                 // which holds the Action LOAD_AUTHORS_SUCCESS
                 expect(actions[1].type).toEqual(types.LOAD_AUTHORS_SUCCESS);
                 done();
-        })
+        });
     });
 });

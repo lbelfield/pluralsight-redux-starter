@@ -5,7 +5,7 @@ import expect from 'expect';
 import * as courseActions from './courseActions';
 import * as types from './actionTypes';
 
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store'; // configure a mock store
 //import nock from 'nock'; // for mocking HTTP calls - not needed as using a mock api
 
@@ -52,8 +52,8 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
                 // which holds the Action LOAD_COURSES_SUCCESS
                 expect(actions[1].type).toEqual(types.LOAD_COURSES_SUCCESS);
                 done();
-        })
-    })
+        });
+    });
 
     it('should create BEGIN_AJAX_CALL and CREATE_COURSES_SUCCESS when saving courses', (done) => {
         // Arrange
@@ -88,8 +88,8 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
                 // which holds the Action CREATE_COURSE_SUCCESS
                 expect(actions[1].type).toEqual(types.CREATE_COURSE_SUCCESS);
                 done();
-        })
-    })
+        });
+    });
 
 
 
@@ -134,6 +134,6 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
                 // which holds the Action UPDATE_COURSE_SUCCESS
                 expect(actions[1].type).toEqual(types.UPDATE_COURSE_SUCCESS);
                 done();
-        })
-    })
+        });
+    });
 });
