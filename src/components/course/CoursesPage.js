@@ -52,6 +52,7 @@ CoursesPage.propTypes = {
     courses: PropTypes.array.isRequired
 };
 
+// WHAT STATE SHOULD I EXPOSE AS PROPS???
 // this is our Function used in our react-redux's Connect Function
 // to determine what state we want to expose to our CoursePage.js Component
 function mapStateToProps(state, ownProps) {
@@ -63,6 +64,7 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
+// WHAT ACTIONS SHOULD I EXPOSE AS PROPS???
 // this is our Function used in our react-redux's Connect Function
 // to determine what actions we want to expose to our CoursePage.js Component
 function mapDispatchToProps(dispatch) {

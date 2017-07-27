@@ -12,7 +12,7 @@ describe ('Courses Page', () => {
                 {id: '2', watchHref: '', title: 'Angular Tutorial', authorId: 'cory-house', length: '5:00', category: 'Angular'}
                 ],
             actions: { }
-        }
+        };
 
         let routerHistoryString = "";
 
@@ -21,7 +21,7 @@ describe ('Courses Page', () => {
         // it pushes the correct path onto our array.
         router.browserHistory = { 
             push: (value) => { 
-                routerHistoryString = value 
+                routerHistoryString = value;
             } 
         };
 
@@ -34,5 +34,5 @@ describe ('Courses Page', () => {
 
         //assert that the browserHistory does have the /course value we expect
         expect(routerHistoryString).toBe('/course');
-    })
+    });
  });
