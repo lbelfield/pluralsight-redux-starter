@@ -15,10 +15,17 @@ export class CoursesPage extends Component {
         // So using bind() in the ctor makes sense, as we dont want to call this now 
         // So we just set this to the instance of the class, rather than the render()'s this which is what invokes it
         this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
     redirectToAddCoursePage() {
         browserHistory.push('/course');
+    }
+
+    deleteCourse(event) {
+        event.preventDefault();
+        const courseId = event.target.name;
+        this.props.actions.deleteCourse(courseId);
     }
 
     render() {
@@ -38,7 +45,9 @@ export class CoursesPage extends Component {
                     className="btn btn-primary"
                     onClick={this.redirectToAddCoursePage} />
 
-                <CourseList courses={this.props.courses} />
+                <CourseList 
+                    courses={this.props.courses}
+                    onDelete={this.deleteCourse} />
             </div>
         );
     }

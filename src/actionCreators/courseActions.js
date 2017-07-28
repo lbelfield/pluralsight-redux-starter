@@ -60,3 +60,26 @@ export function saveCourse(course) {
             });
     };
 }
+
+export function deleteCourseSuccess(courseId) {
+    return { type: types.DELETE_COURSE_SUCCESS, courseId: courseId };
+}
+
+// this is a thunk!
+export function deleteCourse(courseId) {
+
+    return function(dispatch, getState) {
+
+        // adding our beginAjax to our thunk, for loading
+        dispatch(beginAjaxCall());
+
+        return courseApi.deleteCourse(courseId)
+            .then( () => {
+                dispatch(deleteCourseSuccess(courseId));
+            })
+            .catch(error => {
+                dispatch(ajaxCallError(error));
+                throw(error);
+            });
+    };
+}

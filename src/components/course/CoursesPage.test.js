@@ -10,7 +10,7 @@ describe ('Courses Page', () => {
             courses: [
                 {id: '1', watchHref: '', title: 'React Tutorial', authorId: 'cory-house', length: '2:00', category: 'React'},
                 {id: '2', watchHref: '', title: 'Angular Tutorial', authorId: 'cory-house', length: '5:00', category: 'Angular'}
-                ],
+            ],
             actions: { }
         };
 
@@ -27,7 +27,7 @@ describe ('Courses Page', () => {
 
         const wrapper = mount(<CoursesPage {...props} />);
 
-        const addCourseButton = wrapper.find('input');
+        const addCourseButton = wrapper.find('input').first();
         expect(addCourseButton.prop('type')).toBe('submit');
 
         addCourseButton.simulate('click');

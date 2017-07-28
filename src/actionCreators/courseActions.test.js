@@ -91,8 +91,6 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
         });
     });
 
-
-
     it('should create BEGIN_AJAX_CALL and CREATE_COURSES_SUCCESS when saving courses', (done) => {
         // Arrange
         // Test data for Actions
@@ -133,6 +131,40 @@ describe('Course Actions - Thunks Only - Async Actions', () => {
                 // second Action Creator to be dispactched is updateCourseSuccess(),
                 // which holds the Action UPDATE_COURSE_SUCCESS
                 expect(actions[1].type).toEqual(types.UPDATE_COURSE_SUCCESS);
+                done();
+        });
+    });
+
+    it('should create BEGIN_AJAX_CALL and DELETE_COURSES_SUCCESS when deleting a courses', (done) => {
+        // Arrange
+        const actions = [
+            { type: types.BEGIN_AJAX_CALL },
+            { type: types.CREATE_COURSE_SUCCESS },
+            { type: types.LOAD_COURSES_SUCCESS },
+            { type: types.DELETE_COURSE_SUCCESS },
+            { type: types.UPDATE_COURSE_SUCCESS }
+        ];
+
+        // const course = {id: '1', watchHref: '', title: 'React Tutorial', authorId: 'cory-house', length: '2:00', category: 'React'};
+
+        const store = mockStore(
+            {
+                courses: [
+                    {id: '1', watchHref: '', title: 'React Tutorial', authorId: 'cory-house', length: '10:00', category: 'React'},
+                    {id: '2', watchHref: '', title: 'Angular Tutorial', authorId: 'cory-house', length: '15:00', category: 'Angular'},
+                    {id: '3', watchHref: '', title: 'Ember Tutorial', authorId: 'cory-house', length: '1:00', category: 'Ember'}
+                ]
+            }, 
+            actions);
+
+        store.dispatch(courseActions.deleteCourse('1'))
+            .then(() => {
+
+                const actions = store.getActions();
+
+                // Assert 
+                expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
+                expect(actions[1].type).toEqual(types.DELETE_COURSE_SUCCESS);
                 done();
         });
     });

@@ -54,6 +54,20 @@ export default function courseReducer(state = initialState.courses, action) {
                 ...state.filter(course => course.id !== action.course.id),
                 Object.assign({}, action.course)
             ];
+        
+        case types.DELETE_COURSE_SUCCESS: {
+            // splice() is a mutatable method, so cant use that!
+            // slice() is immutable, that gives me part of the array. 
+            // So if we use slice() to take 0 < x and x > 0, and then combine them with a concat, we get everything but x.
+
+            const removedCourse = state.filter(c => c.id === action.courseId)[0];
+            const index = state.indexOf(removedCourse);            
+            
+            return [
+                ...state.slice(0, index),
+                ...state.slice(index + 1)
+            ];
+        }
 
         default: 
             return state;

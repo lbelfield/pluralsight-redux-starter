@@ -7,7 +7,8 @@ import CourseList from './CourseList';
 function setup() {
     // define props
     let props = {
-        courses: []
+        courses: [],
+        onDelete: () => {}
     };
 
     return shallow(<CourseList {...props} />);
@@ -28,6 +29,7 @@ describe('CourseList via Enzyme', () => {
         expect(wrapper.find('tr').childAt(2).text()).toEqual('Author');
         expect(wrapper.find('tr').childAt(3).text()).toEqual('Category');
         expect(wrapper.find('tr').childAt(4).text()).toEqual('Length');
+        expect(wrapper.find('tr').childAt(5).text()).toEqual('Delete');
     });
 
 });

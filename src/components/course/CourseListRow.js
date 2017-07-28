@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
-const CourseListRow = ({course}) => {
+const CourseListRow = ({course, onDelete}) => {
     // We have a table with headers and a body in the parent, CourseList. 
     // This contains the rows and data for the table, ie the <tr> <td> 
     // from our Container Component, we passed down course (line 4) into props from a .map() 
@@ -18,12 +18,19 @@ const CourseListRow = ({course}) => {
             <td>{course.authorId}</td>
             <td>{course.category}</td>
             <td>{course.length}</td>
+            <td><input 
+                type="submit"
+                name={course.id} 
+                value={'Delete'}
+                className="btn btn-primary"
+                onClick={onDelete}/></td>
         </tr>
     );
 };
 
 CourseListRow.propTypes = {
-    course: PropTypes.object.isRequired
+    course: PropTypes.object.isRequired,
+    onDelete: PropTypes.func.isRequired
 };
 
 export default CourseListRow;

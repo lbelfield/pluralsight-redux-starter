@@ -53,6 +53,7 @@ describe('Store', () => {
             title: "Clean Code"
         };
 
+        initialState.courses = [];
         initialState.courses.push(course);
         // note: initialState = { authors: [], courses: [ { id: '1', title: 'Clean Code' } ], ajaxCallsInProgress: 0 }
         
@@ -99,6 +100,7 @@ describe('Store', () => {
             { id: '2', title: "React Fundamentals" }
         ];
 
+        initialState.courses = [];
         initialState.courses.push(courses);
         
         // Create a store, similar to our configureStore.js in our application's entry point
@@ -131,6 +133,7 @@ describe('Store', () => {
             {id: 'dan-wahlin', firstName: 'Dan', lastName: 'Wahlin'}
         ];
 
+        initialState.courses = [];
         initialState.authors.push(authors);
         
         // Create a store, similar to our configureStore.js in our application's entry point
@@ -150,5 +153,39 @@ describe('Store', () => {
         const firstAuthorInArrayFromState = action.authors[0];
         const expected = { id: 'cory-house', firstName: 'Cory', lastName: 'House' };
         expect(firstAuthorInArrayFromState).toEqual(expected);
+    });
+
+    it('Should handle deleting courses', () => {
+        // Arrange
+        const courses = [
+            { id: '1', title: "Clean Code" },
+            { id: '2', title: "React Fundamentals" },
+            { id: '3', title: "Angular Fundamentals" }
+        ];
+
+        initialState.courses = [];
+        initialState.courses = courses;
+        
+        const store = createStore(
+            rootReducer, 
+            initialState
+        );  
+
+        // Act
+        const action = courseActions.deleteCourseSuccess('2');
+        store.dispatch(action);
+
+        // Assert
+        const actual = store.getState().courses;
+
+        const firstCourseInArrayFromState = actual[0];
+        const expectedFirst = { id: '1', title: "Clean Code" };
+        expect(firstCourseInArrayFromState).toEqual(expectedFirst);
+
+        const secondCourseInArrayFromState = actual[1];
+        const expectedSecond = { id: '3', title: "Angular Fundamentals" };
+        expect(secondCourseInArrayFromState).toEqual(expectedSecond);
+
+        expect(actual.length).toEqual(2);
     });
 });

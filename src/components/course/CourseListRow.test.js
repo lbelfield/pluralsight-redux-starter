@@ -14,13 +14,14 @@ function setup() {
             authorId: '109',
             category: 'React',
             length: '1:00'
-        }
+        },
+        onDelete: () => {}
     };
 
     return shallow(<CourseListRow {...props} />);
 }
 
-describe('CourseList via Enzyme', () => {
+describe('CourseListRow via Enzyme', () => {
     it('test the <td>', () => {
 
         // create a variable and set equal to setup so we can assert against it.
@@ -36,6 +37,9 @@ describe('CourseList via Enzyme', () => {
         expect(wrapper.find('tr').childAt(2).text()).toEqual('109');
         expect(wrapper.find('tr').childAt(3).text()).toEqual('React');
         expect(wrapper.find('tr').childAt(4).text()).toEqual('1:00');
+
+        expect(wrapper.find('input').props().value).toEqual('Delete');
+        expect(wrapper.find('input').props().name).toEqual(42001);
 
         // much harder, but figured using console.log(). 
         // we need to get the 2nd childAt to get the right <td>
