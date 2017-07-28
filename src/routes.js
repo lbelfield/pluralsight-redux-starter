@@ -5,6 +5,7 @@ import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage'; //eslint-disable-line import/no-named-as-default
 import ManageCoursePage from './components/course/ManageCoursePage'; //eslint-disable-line import/no-named-as-default
+import AuthorsPage from './components/authors/AuthorsPage'; //eslint-disable-line import/no-named-as-default
 
 export default (
     // by placing app at the top, we are saying always load the app component 
@@ -15,6 +16,7 @@ export default (
         <Route path="courses" component={CoursesPage} />
         <Route path="course" component={ManageCoursePage} />
         <Route path="course/:id" component={ManageCoursePage} />
-        <Route path="about" component={AboutPage} />        
+        <Route path="about" component={AboutPage} />
+        <Route path="authors" component={AuthorsPage} />        
     </Route>
 );
