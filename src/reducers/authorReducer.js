@@ -16,6 +16,20 @@ export default function authorReducer(state = initialState.authors, action) {
                 ...state.slice(index + 1)
             ];
         }
+
+        case types.CREATE_AUTHOR_SUCCESS: {
+            return [
+                ...state,
+                Object.assign({}, action.author)           
+            ];
+        }
+
+        case types.UPDATE_AUTHOR_SUCCESS: {
+            return [
+                ...state.filter(a => a.id !== action.author.id),
+                Object.assign({}, action.author)
+            ];
+        }
                    
         default:
             return state;

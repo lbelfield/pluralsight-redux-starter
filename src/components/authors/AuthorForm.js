@@ -23,7 +23,7 @@ const AuthorForm = ({author, onChange, onSave}) => {
             <ReadOnlyTextInput
                 name="id"
                 label="id"
-                value={author.id}
+                value={author.tempId}
             />
             <input 
                 name="submit"

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import AuthorForm from './AuthorForm';
 import * as AuthorActions from '../../actionCreators/authorActions';
+import {browserHistory} from 'react-router';
 
 class ManageAuthorPage extends Component {
     constructor(state, context) {
@@ -16,23 +17,25 @@ class ManageAuthorPage extends Component {
         this.onSave = this.onSave.bind(this);
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     console.log('Hit-man');
-    //     if(this.props.author.id !== nextProps.author.id) {
-    //         console.log('Hit');
-    //         this.setState({author: Object.assign({}, nextProps.author)});
-    //     }
-    // }
+    componentWillReceiveProps(nextProps) {
+        console.log('Hit-man');
+        if(this.props.author.id !== nextProps.author.id) {
+            console.log('Hit');
+            this.setState({author: Object.assign({}, nextProps.author)});
+        }
+    }
 
     onChange(event) {
         let field = event.target.name;
         let newAuthor = Object.assign({}, this.state.author);
         newAuthor[field] = event.target.value;
+        newAuthor.tempId = newAuthor.firstName + "-" + newAuthor.lastName;
         return this.setState({author: newAuthor});
     }
 
     onSave() {
-        console.log("save Button Clicked");
+        this.props.actions.saveAuthor(this.state.author);
+        browserHistory.push('/Authors');
     }
 
     render() {

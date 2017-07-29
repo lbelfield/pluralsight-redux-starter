@@ -50,3 +50,27 @@ export function deleteAuthor(authorId) {
             });
     };
 }
+
+export function updateAuthorSuccess(author) {
+    return {type: types.UPDATE_AUTHOR_SUCCESS, author: author}
+}
+
+export function createAuthorSuccess(author) {
+    return {type: types.CREATE_AUTHOR_SUCCESS, author: author}
+}
+
+export function saveAuthor(author) {
+    return function(dispatch) {
+
+        dispatch(beginAjaxCall());
+
+        return AuthorApi.saveAuthor(author)
+            .then(a => {
+                author.id ? dispatch(updateAuthorSuccess(a)) : dispatch(createAuthorSuccess(a));
+            })
+            .catch(error => {
+                dispatch(ajaxCallError(error));
+                throw(error);
+            });
+    }
+}
