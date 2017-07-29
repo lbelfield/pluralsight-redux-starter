@@ -52,11 +52,11 @@ export function deleteAuthor(authorId) {
 }
 
 export function updateAuthorSuccess(author) {
-    return {type: types.UPDATE_AUTHOR_SUCCESS, author: author}
+    return {type: types.UPDATE_AUTHOR_SUCCESS, author: author};
 }
 
 export function createAuthorSuccess(author) {
-    return {type: types.CREATE_AUTHOR_SUCCESS, author: author}
+    return {type: types.CREATE_AUTHOR_SUCCESS, author: author};
 }
 
 export function saveAuthor(author) {
@@ -72,5 +72,5 @@ export function saveAuthor(author) {
                 dispatch(ajaxCallError(error));
                 throw(error);
             });
-    }
+    };
 }

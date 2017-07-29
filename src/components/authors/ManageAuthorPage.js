@@ -18,9 +18,7 @@ class ManageAuthorPage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('Hit-man');
         if(this.props.author.id !== nextProps.author.id) {
-            console.log('Hit');
             this.setState({author: Object.assign({}, nextProps.author)});
         }
     }
@@ -29,11 +27,16 @@ class ManageAuthorPage extends Component {
         let field = event.target.name;
         let newAuthor = Object.assign({}, this.state.author);
         newAuthor[field] = event.target.value;
-        newAuthor.tempId = newAuthor.firstName + "-" + newAuthor.lastName;
+
+        if(newAuthor.create) {
+            newAuthor.id = newAuthor.firstName + "-" + newAuthor.lastName;
+        }
+        
         return this.setState({author: newAuthor});
     }
 
     onSave() {
+        this.state.author.create = false;
         this.props.actions.saveAuthor(this.state.author);
         browserHistory.push('/Authors');
     }
@@ -62,7 +65,7 @@ function mapStateToProps(state, ownProps) {
         authorFormData = state.authors.filter(a => a.id == ownProps.routeParams.id)[0];
     }
     else {
-        authorFormData = {id: '', firstName: '', lastName: ''};
+        authorFormData = {id: '', firstName: '', lastName: '', create: true};
     }
 
     return {
