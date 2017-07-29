@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import AuthorListRow from './AuthorListRow';
 
-const AuthorList = ({authors, onDelete}) => {
+const AuthorList = ({authors, onDelete, onUpdate}) => {
     return (
         <table className="table">
             <thead>
@@ -19,6 +19,7 @@ const AuthorList = ({authors, onDelete}) => {
                         key={author.id}
                         author={author}
                         onDelete={onDelete}
+                        onUpdate={onUpdate}
                     />
                 )}
             </tbody>
@@ -28,7 +29,8 @@ const AuthorList = ({authors, onDelete}) => {
 
 AuthorList.propTypes = {
     authors: React.PropTypes.array.isRequired,
-    onDelete: React.PropTypes.func.isRequired
+    onDelete: React.PropTypes.func.isRequired,
+    onUpdate: React.PropTypes.func.isRequired
 };
 
 export default AuthorList;

@@ -50,6 +50,10 @@ export class ManageCoursePage extends Component {
     // Each time this gets called, we delete the current state and create a new one via Object.assign()
     // we then set it's value
     // and then set the state via setState()
+    // Remember, event.target.value only gets the value entered; no idea which textbox is being updated.
+    // So we need the event.target.name to determine which textbox to update, as name is mapped to author's properties
+    // then course[field] = ... is equivalent to course.field = ...
+    // now we have the updated course, we set the state.
     updateCourseState(event) {
         const field = event.target.name;
         let course = Object.assign({}, this.state.course);

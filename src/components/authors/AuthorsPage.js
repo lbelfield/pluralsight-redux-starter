@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 
 import AuthorList from './AuthorList';
 import * as authorActions from '../../actionCreators/authorActions';
@@ -9,7 +10,17 @@ class AuthorsPage extends Component {
     constructor(props, context) {
         super(props, context);
         
+        this.redirectToAddAuthorPage = this.redirectToAddAuthorPage.bind(this);             
+        this.onUpdate = this.onUpdate.bind(this);
         this.onDelete = this.onDelete.bind(this);
+    }
+
+    redirectToAddAuthorPage() {
+        browserHistory.push("/author");
+    }
+
+    onUpdate(event) {
+        browserHistory.push("/author/" + event.target.name);
     }
 
     onDelete(event) {
@@ -26,12 +37,13 @@ class AuthorsPage extends Component {
                     type="submit"
                     value="Add Author"
                     className="btn btn-primary"
-                    onClick={this.redirectToAddCoursePage} // todo
-                    />
+                    onClick={this.redirectToAddAuthorPage}
+                />
 
                 <AuthorList 
                     authors={this.props.authors}
                     onDelete={this.onDelete}
+                    onUpdate={this.onUpdate}
                 />
             </div>
         );
