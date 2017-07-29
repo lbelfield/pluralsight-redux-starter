@@ -8,6 +8,12 @@ import * as authorActions from '../../actionCreators/authorActions';
 class AuthorsPage extends Component {
     constructor(props, context) {
         super(props, context);
+        
+        this.onDelete = this.onDelete.bind(this);
+    }
+
+    onDelete(event) {
+        this.props.actions.deleteAuthor(event.target.name);           
     }
 
     render() {
@@ -16,7 +22,7 @@ class AuthorsPage extends Component {
                 <h1>Authors</h1>
 
                 <input 
-                    style={{"margin-bottom": "14px"}}
+                    style={{"marginBottom": "14px"}}
                     type="submit"
                     value="Add Author"
                     className="btn btn-primary"
@@ -25,6 +31,7 @@ class AuthorsPage extends Component {
 
                 <AuthorList 
                     authors={this.props.authors}
+                    onDelete={this.onDelete}
                 />
             </div>
         );
@@ -36,7 +43,7 @@ AuthorsPage.propTypes = {
     authors: React.PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         authors: state.authors
     };

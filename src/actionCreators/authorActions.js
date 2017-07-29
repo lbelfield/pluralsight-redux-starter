@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import AuthorApi from '../api/mockAuthorApi';
-import {beginAjaxCall} from './ajaxStatusActions';
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 // this is my Action Creator for loadAuthorsSuccess(), used in my thunk
 export function loadAuthorsSuccess(authors) {
@@ -25,6 +25,27 @@ export function loadAuthors() {
                 dispatch(loadAuthorsSuccess(authors));
             })
             .catch(error => {
+                throw(error);
+            });
+    };
+}
+
+export function deleteAuthorsSuccess(authorId) {
+    return { type: types.DELETE_AUTHORS_SUCCESS, authorId: authorId };
+}
+
+export function deleteAuthor(authorId) {
+
+    return function(dispatch, getState){
+
+        dispatch(beginAjaxCall());
+
+        return AuthorApi.deleteAuthor(authorId)
+            .then(() => {
+                dispatch(deleteAuthorsSuccess(authorId));
+            })
+            .catch(error => {
+                dispatch(ajaxCallError(error));
                 throw(error);
             });
     };

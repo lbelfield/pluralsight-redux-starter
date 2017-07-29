@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
-const AuthorListRow = ({author}) => {
+const AuthorListRow = ({author, onDelete}) => {
     return (
         <tr>
             <td>{author.id}</td>
@@ -17,9 +17,10 @@ const AuthorListRow = ({author}) => {
             <td>
                 <input 
                     type="submit"
+                    name={author.id}
                     value="Delete"
                     className="btn btn-primary"
-                    //onClick={this.redirectToAddCoursePage} // todo
+                    onClick={onDelete} // todo
                 />
             </td>
         </tr>
@@ -27,7 +28,8 @@ const AuthorListRow = ({author}) => {
 };
 
 AuthorListRow.propTypes = {
-    author: React.PropTypes.object.isRequired
+    author: React.PropTypes.object.isRequired,
+    onDelete: React.PropTypes.func.isRequired
 };
 
 export default AuthorListRow;
