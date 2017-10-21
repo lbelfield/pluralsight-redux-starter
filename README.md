@@ -23,26 +23,29 @@ SET UP GIT FOR FIRST TIME:
 2 Go to github and sign in - create a new repository.
 
 Run these commands:
-    `git init`
-    `git status` (notice everything in red)
-    `git add --all`
-    `git status (notice everything in green)`
-    `git commit -m "description"`
-    `git status` (notice now says nothing to commit - your code is safe)
-    (the next step depends on the generated url)
-    `git remote add origin https://github.com/...`
-    `git push -u origin master`
-
+```shell
+git init    
+gst    
+git add .    
+gst    
+git commit -m "<description>"    
+gst    
+git remote add origin https://github.com/...
+git push -u origin master
+```
 
 PUSHING CHANGES:
 
 change file
-`git status` (to see what is outstanding - notice it is red)
-`git add --all`
-`git status` (notice it is green)
-`git commit -m "description"`
-`git status` (notice now says nothing to commit - your code is safe)
-`git push -u origin master`
+```shell
+gst
+git add .
+gst
+git commit -m "description"
+gst
+git push -u origin master
+```
+
 
 ******************************************************************************************************************************
 
@@ -58,16 +61,21 @@ To get back to this, I have created a branch called ReduxBasic (locally) and Red
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout ReduxBasic`
+```shell
+git branch --all
+git checkout ReduxBasic
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin ReduxBasic`
+```shell 
+git push -u origin ReduxBasic
+```
 
 then to switch back:
-
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -83,16 +91,21 @@ To get back to this, I have created a branch called ReduxThunkFirst (locally) an
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout ReduxThunkFirst`
+```shell
+git branch --all
+git checkout ReduxThunkFirst
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin ReduxThunkFirst`
+```shell
+git push -u origin ReduxThunkFirst
+```
 
 then to switch back:
-
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -109,16 +122,22 @@ To get back to this, I have created a branch called ReduxThunkSecond (locally) a
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout ReduxThunkSecond`
+```shell
+git branch --all
+git checkout ReduxThunkSecond
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin ReduxThunkSecond`
+```shell
+git push -u origin ReduxThunkSecond
+```
 
 then to switch back:
 
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -139,16 +158,22 @@ To get back to this, I have created a branch called ReduxThunkThird (locally) an
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout ReduxThunkThird`
+```shell
+git branch --all
+git checkout ReduxThunkThird
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin ReduxThunkThird`
+```shell
+git push -u origin ReduxThunkThird
+```
 
 then to switch back:
 
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -171,16 +196,22 @@ To get back to this, I have created a branch called ReduxThunkFourth (locally) a
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout ReduxThunkFourth`
+```shell
+git branch --all
+git checkout ReduxThunkFourth
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin ReduxThunkFourth`
+```shell
+git push -u origin ReduxThunkFourth
+```
 
 then to switch back:
 
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -200,24 +231,34 @@ These Test:
     1. Presentational Components (simple) using shallow() for the Component only
 
 To test, run script:
-`npm run test`
+```shell
+npm run test
+```
 To run test in watch mode:
-`npm run test:watch`
+```shell
+npm run test:watch
+```
 
 To get back to this, I have created a branch called TestsEnzymePresentational (locally) and TestsEnzymePresentational (remotely)
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout TestsEnzymePresentational`
+```shell
+git branch --all
+git checkout TestsEnzymePresentational
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin TestsEnzymePresentational`
+```shell
+git push -u origin TestsEnzymePresentational
+```
 
 then to switch back:
 
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -238,24 +279,33 @@ This tests:
     4. Store (these are more like Integration Tests) testing the Actions, Reducers and Store work together
 
 To test, run script:
-`npm run test`
+```shell
+npm run test
+```
 To run test in watch mode:
-`npm run test:watch`
+```shell
+npm run test:watch
+```
 
 To get back to this, I have created a branch called TestsEnzymeContainer (locally) and TestsEnzymeContainer (remotely)
 
 This branch contains verbose comments.
 
-`git branch --all`
-`git checkout TestsEnzymeContainer`
+```shell
+git branch --all
+git checkout TestsEnzymeContainer
+```
 
 Note, to push to this branch, do add and commit, then:
-`git push -u origin TestsEnzymeContainer`
+```shell
+git push -u origin TestsEnzymeContainer
+```
 
 then to switch back:
-
-`git branch --all`
-`git checkout master`
+```shell
+git branch --all
+git checkout master
+```
 
 ******************************************************************************************************************************
 
@@ -265,16 +315,21 @@ then to switch back:
 
 To set me up:
 
-`git -c http.sslVerify=false clone https://github.com/lbelfield/pluralsight-redux-starter.git`
+```shell
+git -c http.sslVerify=false clone https://github.com/lbelfield/pluralsight-redux-starter.git
+```
 
-`npm install`
+```shell
+npm install
+```
 
 
 To make the app run
-    `npm run build`
-    `npm start`
-    `npm test`
-    `localhost:3000`
+```shell
+npm run build
+npm start
+npm test
+localhost:3000
+```
 
 ******************************************************************************************************************************
-=======
