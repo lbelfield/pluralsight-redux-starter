@@ -10,9 +10,14 @@ export default function configureStore(initialState) {
         // 3 is applyMiddleware got from 'redux'. It provides a third party extension point between dispatching an action and reducers.
             // need to add thunk, which handles asynchronous calls. Note this is used in ActionCreators
             // reduxImmutableStateInvariant detects whether there is mutable code (which would be bad)
+
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+
     return createStore(
-        rootReducer, 
+        rootReducer,
         initialState,
-        applyMiddleware(thunk, reduxImmutableStateInvariant())
-        );
+        composeEnhancers(
+          applyMiddleware(thunk, reduxImmutableStateInvariant())
+        ));
 }
